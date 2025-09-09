@@ -4,8 +4,8 @@ New-Item -Path "C:\Drivers" -ItemType Directory -Force | Out-Null
 # --- הורדת דרייברים ---
 Write-Host "Downloading drivers..."
 
-curl -L -o "C:\Drivers\sp157284.exe" "https://ftp.hp.com/pub/softpaq/sp157001-157500/sp157284.exe"
-curl -L -o "C:\Drivers\sp155883.exe" "https://ftp.hp.com/pub/softpaq/sp155501-156000/sp155883.exe"
+Invoke-WebRequest -Uri "https://ftp.hp.com/pub/softpaq/sp157001-157500/sp157284.exe" -OutFile "C:\Drivers\sp157284.exe"
+Invoke-WebRequest -Uri "https://ftp.hp.com/pub/softpaq/sp155501-156000/sp155883.exe" -OutFile "C:\Drivers\sp155883.exe"
 
 # --- התקנת דרייברים ---
 Write-Host "Installing driver sp157284.exe..."
