@@ -1,30 +1,17 @@
-# --- יצירת תיקיות זמניות ---
-New-Item -Path "C:\Temp" -ItemType Directory -Force | Out-Null
+# --- יצירת תיקיות ---
 New-Item -Path "C:\Drivers" -ItemType Directory -Force | Out-Null
 
-# --- זיהוי דגם המחשב ---
-$model = (Get-CimInstance Win32_ComputerSystem).Model.Trim()
-Write-Host "Detected model: $model"
+# --- הורדת דרייברים ---
+Write-Host "Downloading drivers..."
 
-# --- בדיקה ודגם מתאים ---
-if ($model -eq "HP EliteBook 840 G11") {
+curl -L -o "C:\Drivers\sp157284.exe" "https://ftp.hp.com/pub/softpaq/sp157001-157500/sp157284.exe"
+curl -L -o "C:\Drivers\sp155883.exe" "https://ftp.hp.com/pub/softpaq/sp155501-156000/sp155883.exe"
 
-    Write-Host "HP EliteBook 840 G11 detected. Proceeding with driver installation..."
+# --- התקנת דרייברים ---
+Write-Host "Installing driver sp157284.exe..."
+Start-Process -FilePath "C:\Drivers\sp157284.exe" -ArgumentList "/silent" -Wait
 
-    # --- קישור ישיר לדרייבר Wi-Fi ---
-    $driverUrl = "https://ftp.hp.com/pub/softpaq/sp157001-157500/sp157284.exe"
-    $driverExe = "C:\Temp\sp157284.exe"
+Write-Host "Installing driver sp155883.exe..."
+Start-Process -FilePath "C:\Drivers\sp155883.exe" -ArgumentList "/silent" -Wait
 
-    # --- הורדה עם curl ---
-    Write-Host "Downloading Wi-Fi driver from $driverUrl"
-    curl -L -o $driverExe $driverUrl
-
-    # --- הרצת קובץ ההתקנה של HP (תומך בפרמטר שקט /silent) ---
-    Write-Host "Installing Wi-Fi driver..."
-    Start-Process -FilePath $driverExe -ArgumentList "/silent" -Wait
-
-    Write-Host "Driver installation complete."
-
-} else {
-    Write-Host "This script only supports HP EliteBook 840 G11. Exiting."
-}
+Write-Host "All drivers installed successfully."
