@@ -15,5 +15,8 @@ Start-Process -FilePath "C:\Drivers\sp157284.exe" -ArgumentList "/s" -Wait
 Write-Host "Installing driver sp155883.exe..."
 Start-Process -FilePath "C:\Drivers\sp155883.exe" -ArgumentList "/s" -Wait
 
+Write-Host "Installing driver sp153667.exe..."
+Start-Process -FilePath "C:\Drivers\sp153667.exe" -ArgumentList "/s" -Wait
+
 Write-Host "All drivers installed successfully."
 
