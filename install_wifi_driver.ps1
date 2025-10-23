@@ -6,6 +6,7 @@ Write-Host "Downloading drivers..."
 
 Invoke-WebRequest -Uri "https://ftp.hp.com/pub/softpaq/sp157001-157500/sp157284.exe" -OutFile "C:\Drivers\sp157284.exe"
 Invoke-WebRequest -Uri "https://ftp.hp.com/pub/softpaq/sp155501-156000/sp155883.exe" -OutFile "C:\Drivers\sp155883.exe"
+Invoke-WebRequest -Uri "https://ftp.hp.com/pub/softpaq/sp153501-154000/sp153667.exe" -OutFile "C:\Drivers\sp153667.exe"
 
 # --- התקנת דרייברים (silent) ---
 Write-Host "Installing driver sp157284.exe..."
